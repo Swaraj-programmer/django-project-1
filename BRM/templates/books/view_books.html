@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Employees</title>
+    <link rel="stylesheet" href="{%static 'css/book.css'%}">
+</head>
+<style>
+    a{
+        text-decoration: blue;
+    }
+</style>
+<body>
+    <center>
+    <h1> Books Records </h1>
+    <table cellpadding=10px; cellspacing=10px;>
+        <div id="nav">
+            <a href="http://localhost:8000/books/views-books/">View Books</a>
+            <a href="http://localhost:8000/books/insert">Insert New Book</a>
+            <a href="http://localhost:8000/books/search">Search Book</a>
+            <a href="http://localhost:8000/books/logout/">Logout</a>
+        </div>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Author</th>
+            <th>Publisher</th>
+        </tr>
+        {% for books in book %}
+        <tr>
+            <td>{{ books.title }}</td>
+            <td>{{ books.price }}</td>
+            <td>{{ books.author }}</td>
+            <td>{{ books.publisher }}</td>
+            <td><a href="http://localhost:8000/books/edit?bookid={{books.id}}">Edit</a></td>
+            <td><a href="http://localhost:8000/books/delete?bookid={{books.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    Do you want to Insert More Records?<br><a href="http://localhost:8000/books/insert">Click Me</a>
+</center>
+</body>
+</html>

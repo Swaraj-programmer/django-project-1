@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Book Record</title>
+    <link rel="stylesheet" href="{% static 'css/bookstyle.css' %} ">
+</head>
+<style>
+    table{
+        width: 80%;
+        border: 2px solid black;
+    }
+    table th{
+        background-color: navy;
+        color: white;
+        border: 2px solid black;
+    }
+    table td{
+        border: 2px solid black;
+        padding: 25px;
+        padding-left: 100px;
+        color: cadetblue;
+        font-size: 18px;
+    
+    }
+    h1{
+        text-align: center;
+    }
+</style>
+<body>
+    <div id="header">
+        <h1>Book Record Management</h1>
+    </div>
+    <div id="nav">
+        <a href="http://localhost:8000/books/views-books/">View Books</a>
+        <a href="http://localhost:8000/books/insert">Insert New Book</a>
+        <a href="http://localhost:8000/books/search">Search Book</a><a href="http://localhost:8000/books/logout/">Logout</a>
+    </div>
+    <div id="main">
+        <h2>Search Book Record</h2>
+        <form action="http://localhost:8000/books/searching/" method="post">
+            {% csrf_token %}
+           
+            {{form}}
+            <input type="submit" value="Search">
+        </form><br>
+        {% if books %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Author</th>
+                <th>Publisher</th>
+            </tr>
+            {% for book in books %}
+            <tr>
+                <td>{{book.title}}</td>
+                <td>{{book.price}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.publisher}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>
